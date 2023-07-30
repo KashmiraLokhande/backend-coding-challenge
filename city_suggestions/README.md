@@ -9,7 +9,7 @@ To run the City Suggestions API, you need the following installations:
 4. psycopg2: A Python library used to connect Django with PostgreSQL.
 5. PostGIS: An extension for PostgreSQL that adds support for geographic objects and allows for spatial queries.
 
-#Installation Steps
+## Installation Steps
 1. Install Python: You can download Python from the official website (https://www.python.org/) and follow the installation instructions for your operating system.
 
 2. Install Django: Once Python is installed, open a terminal or command prompt and run the following command to install Django:
@@ -24,16 +24,16 @@ pip install django
 ```
 pip install psycopg2
 ```
-#API Endpoint
+## API Endpoint
 The API endpoint for city suggestions is exposed at /suggestions. It accepts HTTP GET requests with query parameters to perform the search.
 
-#Parameters
+## Parameters
 The API supports the following query parameters:
 
     - q: (Required) The search term for the city name. It can be a partial or complete city name.
     - latitude: (Optional) The latitude of the caller's location. Providing latitude and longitude will help improve the relevance of the suggestions.
     - longitude: (Optional) The longitude of the caller's location. Providing latitude and longitude will help improve the relevance of the suggestions.
-#Response Format
+## Response Format
 The API response is a JSON object with an array of suggested cities:
 
 ```json
@@ -55,7 +55,7 @@ The API response is a JSON object with an array of suggested cities:
     * longitude: The longitude of the city's location.
     * score: A floating-point value between 0 and 1 (inclusive) indicating the confidence in the suggestion. Higher scores indicate more relevant matches.
 
-#Scoring Algorithm
+## Scoring Algorithm
 The scoring algorithm considers both the similarity of the city name with the search query and, if provided, the distance between the city and the caller's location.
 
 1. If the search query exactly matches the city name, the suggestion receives the highest score of 1.0.
@@ -68,7 +68,7 @@ The scoring algorithm considers both the similarity of the city name with the se
 
 5. If latitude and longitude are provided, an additional score of 0.1 is added to the suggestion if the city name contains the search query. The suggestion's score is further adjusted based on the distance between the city and the caller's location. The closer the city, the higher the score.
 
-#Sample output
+## Sample output
 Near Match
 <http://127.0.0.1:8000/suggestions?q=Londo&latitude=43.70011&longitude=-79.4163>
 
@@ -112,13 +112,13 @@ No Match
 }
 ```
 
-#Implementation Details
+## Implementation Details
 The City Suggestions API is built using Python and Django, a web framework for rapid development and clean design. The database used is PostgreSQL. The API leverages the Haversine formula to calculate the distance between two sets of coordinates for scoring suggestions based on location.
 
-#Unit Tests
+## Unit Tests
 The API includes a comprehensive set of unit tests to ensure the correctness of its functionality. The tests cover various scenarios, including exact matches, prefix matches, moderate matches, and suggestions with and without latitude and longitude.
 
-#Workflow
+## Workflow
 1. Forked the given repository and cloned it to the local machine.
 2. Created a Django project named "city_suggestions" and an app named "suggestions_app" to handle the API logic.
 3. Configured the app's URLs to define the endpoint for the API.
